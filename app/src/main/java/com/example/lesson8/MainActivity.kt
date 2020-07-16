@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     private var btnUpdate: Button? = null
 
+    private val intArray = arrayOf(4, 45, 234, 234, 23)
+    private val floatArray = Array<Float>(5){0F}
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,25 +32,13 @@ class MainActivity : AppCompatActivity() {
         initView()
         initButton()
 
-        val p = 3.14
-
-        val intArray = arrayOf(4, 45, 234, 234, 23)
-        val floatArray = Array<Float>(5){0F}
-
         etArrayNumber1?.setText(intArray[0].toString())
         etArrayNumber2?.setText(intArray[1].toString())
         etArrayNumber3?.setText(intArray[2].toString())
         etArrayNumber4?.setText(intArray[3].toString())
         etArrayNumber5?.setText(intArray[4].toString())
 
-        for (i in 0..4)
-            floatArray[i] = (intArray[i]*p).toFloat()
-
-        tvCircle1?.text = floatArray[0].toString()
-        tvCircle2?.text = floatArray[1].toString()
-        tvCircle3?.text = floatArray[2].toString()
-        tvCircle4?.text = floatArray[3].toString()
-        tvCircle5?.text = floatArray[4].toString()
+        calculate()
 
         btnUpdate?.setOnClickListener {
             intArray[0] = etArrayNumber1?.text.toString().toInt()
@@ -55,15 +47,7 @@ class MainActivity : AppCompatActivity() {
             intArray[3] = etArrayNumber4?.text.toString().toInt()
             intArray[4] = etArrayNumber5?.text.toString().toInt()
 
-            for (i in 0..4)
-                floatArray[i] = (intArray[i]*p).toFloat()
-
-            tvCircle1?.text = floatArray[0].toString()
-            tvCircle2?.text = floatArray[1].toString()
-            tvCircle3?.text = floatArray[2].toString()
-            tvCircle4?.text = floatArray[3].toString()
-            tvCircle5?.text = floatArray[4].toString()
-
+            calculate()
         }
     }
 
@@ -83,5 +67,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun initButton(){
         btnUpdate = findViewById<Button>(R.id.btnUpdate)
+    }
+
+    private fun calculate(){
+        for (i in 0..4)
+            floatArray[i] = (intArray[i]*3.14).toFloat()
+
+        tvCircle1?.text = floatArray[0].toString()
+        tvCircle2?.text = floatArray[1].toString()
+        tvCircle3?.text = floatArray[2].toString()
+        tvCircle4?.text = floatArray[3].toString()
+        tvCircle5?.text = floatArray[4].toString()
+
     }
 }
